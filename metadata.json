@@ -1,0 +1,6 @@
+{
+  "name": "SalesForce AI Trainer",
+  "description": "An advanced AI-powered sales training platform that simulates customer interactions, analyzes performance against AI benchmarks, and provides detailed progress reports for managers.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

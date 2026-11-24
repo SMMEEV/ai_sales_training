@@ -1,0 +1,105 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile containing language, theme preferences, and avatar URL.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string",
+          "description": "Index or URL of the avatar"
+        },
+        "theme": {
+          "type": "string",
+          "enum": ["light", "dark"]
+        },
+        "language": {
+          "type": "string",
+          "enum": ["id", "en"]
+        },
+        "createdAt": {
+          "type": "number"
+        },
+        "updatedAt": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "email",
+        "name",
+        "theme",
+        "language",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "TrainingProgress": {
+      "title": "Training Progress",
+      "description": "Progress of a user tracking courses and performance.",
+      "type": "object",
+      "properties": {
+        "academyProgress": {
+          "type": "number",
+          "description": "Percentage or count of completed modules"
+        },
+        "lastWatchedChapter": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "number"
+        }
+      },
+      "required": ["academyProgress", "lastWatchedChapter", "updatedAt"]
+    },
+    "RoleplayEvaluation": {
+      "title": "Roleplay Evaluation",
+      "description": "Historical roleplay scores and feedback",
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "score": {
+          "type": "number"
+        },
+        "scenario": {
+          "type": "string"
+        },
+        "analysisPayload": {
+          "type": "string",
+          "description": "Stringified JSON of the full analysis"
+        },
+        "createdAt": {
+          "type": "number"
+        }
+      },
+      "required": ["date", "score", "scenario", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/User"
+      },
+      "description": "User profile document."
+    },
+    "users/{userId}/progress/training": {
+      "schema": {
+        "$ref": "#/entities/TrainingProgress"
+      },
+      "description": "User's current training course progress."
+    },
+    "users/{userId}/roleplays/{roleplayId}": {
+      "schema": {
+        "$ref": "#/entities/RoleplayEvaluation"
+      },
+      "description": "Records of all roleplay evaluations for the user."
+    }
+  }
+}
